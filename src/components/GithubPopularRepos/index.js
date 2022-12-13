@@ -1,5 +1,4 @@
 import {Component} from 'react'
-
 import Loader from 'react-loader-spinner'
 
 import LanguageFilterItem from '../LanguageFilterItem'
@@ -38,10 +37,8 @@ class GithubPopularRepos extends Component {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
-
     const apiUrl = `https://apis.ccbp.in/popular-repos?language=${activeLanguageFilterId}`
     const response = await fetch(apiUrl)
-
     if (response.ok) {
       const fetchedData = await response.json()
       const updatedData = fetchedData.popular_repos.map(eachRepository => ({
@@ -52,7 +49,6 @@ class GithubPopularRepos extends Component {
         forksCount: eachRepository.forks_count,
         issuesCount: eachRepository.issues_count,
       }))
-
       this.setState({
         repositoriesData: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -74,7 +70,7 @@ class GithubPopularRepos extends Component {
     <div className="failure-view-container">
       <img
         src="https://assets.ccbp.in/frontend/react-js/api-failure-view.png"
-        alt="failure-view"
+        alt="failure view"
         className="failure-view-image"
       />
       <h1 className="error-message">Something Went Wrong</h1>
